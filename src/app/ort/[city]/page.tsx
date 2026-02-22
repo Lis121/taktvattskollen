@@ -133,39 +133,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
                     </div>
                 </section>
 
-                {/* 3. The API Placeholder Section (To be populated programmatically later) */}
-                <section className="section" style={{ backgroundColor: 'var(--bg-secondary)', padding: 'var(--space-8) 0' }}>
-                    <div className="container">
-                        <div style={{ textAlign: 'center', marginBottom: 'var(--space-6)' }}>
-                            <h2 style={{ fontSize: '1.75rem', marginBottom: 'var(--space-2)' }}>Våra senaste uppdrag i {cityObj.name}</h2>
-                            <p style={{ color: 'var(--text-secondary)' }}>Här visar vi snart riktiga exempel och lokala omdömen från grannskapet via vårt API.</p>
-                        </div>
 
-                        {/* Fake API Data Grid */}
-                        <div style={{
-                            display: 'grid',
-                            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                            gap: 'var(--space-6)',
-                            opacity: 0.7,
-                            filter: 'grayscale(50%)'
-                        }}>
-                            {[1, 2, 3].map((item) => (
-                                <div key={item} style={{
-                                    background: 'var(--bg-primary)',
-                                    borderRadius: 'var(--radius-md)',
-                                    padding: 'var(--space-6)',
-                                    border: '1px dashed var(--border-color)',
-                                    textAlign: 'center'
-                                }}>
-                                    <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--brand-primary)', margin: '0 auto var(--space-4)', opacity: 0.2 }}></div>
-                                    <div style={{ height: '16px', width: '60%', background: 'var(--border-color)', margin: '0 auto var(--space-2)', borderRadius: '4px' }}></div>
-                                    <div style={{ height: '12px', width: '80%', background: 'var(--border-color)', margin: '0 auto', borderRadius: '4px' }}></div>
-                                    <p style={{ fontSize: '0.75rem', marginTop: 'var(--space-4)', color: 'var(--brand-primary)', fontWeight: 'bold' }}>[API DATA PLACEHOLDER]</p>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
 
                 {/* 4. The Interactive Price Calculator CTA */}
                 <section id="kalkylator" className={styles.ctaSection}>
