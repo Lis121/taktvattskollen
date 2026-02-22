@@ -1,0 +1,287 @@
+.calculatorWrapper {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .calculatorWrapper {
+        padding: var(--space-8);
+        max-width: 800px;
+    }
+}
+
+.calculatorHeader {
+    text-align: center;
+    margin-bottom: var(--space-6);
+}
+
+.calculatorHeader h3 {
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+}
+
+.calculatorHeader p {
+    font-size: 0.875rem;
+    margin-bottom: 0;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+}
+
+.calcSection,
+.leadSection {
+    width: 100%;
+}
+
+.sectionTitle {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: var(--space-4);
+    color: var(--brand-primary);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: var(--space-2);
+}
+
+.calcSection {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+.formRow {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+@media (min-width: 640px) {
+    .formRow {
+        flex-direction: row;
+        gap: var(--space-4);
+    }
+
+    .formRow>* {
+        flex: 1;
+    }
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.labelRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-2);
+}
+
+.mainLabel {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.inputGroup label {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+}
+
+.numberInputWrapper {
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    width: 120px;
+}
+
+.numberInputWrapper:focus-within {
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
+}
+
+.smallNumberInput {
+    border: none !important;
+    box-shadow: none !important;
+    padding: var(--space-2);
+    text-align: right;
+    width: 100%;
+    border-radius: 0;
+    font-weight: 600;
+}
+
+.unitSuffix {
+    padding-right: var(--space-3);
+    color: var(--text-secondary);
+    font-weight: 600;
+    background-color: transparent;
+}
+
+.input {
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.input:focus {
+    outline: none;
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
+}
+
+.rangeSlider {
+    width: 100%;
+    margin-top: var(--space-2);
+}
+
+.sliderLabels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-top: var(--space-1);
+}
+
+.currentValue {
+    font-weight: 600;
+    color: var(--brand-primary);
+}
+
+.calcBtn {
+    margin-top: var(--space-2);
+    width: 100%;
+}
+
+.mobileLargeBtn {
+    padding: 1rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.leadSection {
+    animation: fadeInDown 0.4s ease-out forwards;
+    padding-top: var(--space-6);
+    border-top: 1px dashed var(--border-color);
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.resultDetails {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    margin-bottom: var(--space-6);
+    background: rgba(16, 185, 129, 0.05);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(16, 185, 129, 0.1);
+    text-align: center;
+}
+
+.resultLabel {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.resultPrice {
+    color: var(--text-primary);
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.rotText {
+    color: var(--accent-success);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.leadForm {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.leadSubtitle {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-2);
+    line-height: 1.5;
+}
+
+.privacyNote {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-top: var(--space-2);
+    opacity: 0.8;
+}
+
+.successMessage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-4);
+    padding: var(--space-6) var(--space-4);
+    background: rgba(16, 185, 129, 0.05);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--accent-success);
+}
+
+.successIcon {
+    width: 64px;
+    height: 64px;
+    background: var(--accent-success);
+    color: white;
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-bottom: var(--space-2);
+}
+
+.successMessage h4 {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.successMessage p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin: 0;
+    line-height: 1.5;
+}

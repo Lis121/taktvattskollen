@@ -1,0 +1,106 @@
+.reviewsSection {
+    background-color: var(--bg-primary);
+    padding: var(--space-16) 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.sectionHeader {
+    text-align: center;
+    margin-bottom: var(--space-12);
+}
+
+.sectionHeader h2 {
+    color: var(--text-primary);
+}
+
+.reviewsGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+}
+
+@media (min-width: 768px) {
+    .reviewsGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.reviewCard {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6) var(--space-8);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.reviewCard:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.stars {
+    display: flex;
+    gap: 2px;
+    color: #fbbf24;
+    /* Yellow for stars */
+    margin-bottom: var(--space-4);
+}
+
+.quote {
+    font-style: italic;
+    color: var(--text-primary);
+    margin-bottom: var(--space-6);
+    flex-grow: 1;
+    position: relative;
+}
+
+.quote::before {
+    content: '"';
+    font-size: 3rem;
+    color: var(--border-color);
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    z-index: 0;
+    opacity: 0.5;
+    font-family: serif;
+}
+
+.quoteText {
+    position: relative;
+    z-index: 1;
+}
+
+.author {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-top: auto;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--brand-primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.authorInfo h4 {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--text-primary);
+}
+
+.authorInfo span {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}

@@ -1,0 +1,147 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    transition: all var(--transition-normal);
+    padding: var(--space-4) 0;
+    background-color: transparent;
+}
+
+.header.scrolled {
+    background-color: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: var(--space-3) 0;
+    box-shadow: var(--shadow-sm);
+}
+
+.navContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+}
+
+.accent {
+    color: var(--brand-primary);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+}
+
+.navLinks {
+    display: flex;
+    gap: var(--space-6);
+}
+
+.navLinks a {
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: color var(--transition-fast);
+    font-size: 1rem;
+}
+
+.navLinks a:hover {
+    color: var(--brand-primary);
+}
+
+.ctaBtn {
+    font-size: 0.95rem;
+    padding: var(--space-2) var(--space-6);
+}
+
+.mobileMenuBtn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-2);
+    z-index: 60;
+}
+
+.hamburger {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--text-primary);
+    position: relative;
+    transition: all var(--transition-normal);
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background-color: var(--text-primary);
+    transition: all var(--transition-normal);
+}
+
+.hamburger::before {
+    transform: translateY(-8px);
+}
+
+.hamburger::after {
+    transform: translateY(8px);
+}
+
+.hamburger.open {
+    background-color: transparent;
+}
+
+.hamburger.open::before {
+    transform: translateY(0) rotate(45deg);
+}
+
+.hamburger.open::after {
+    transform: translateY(0) rotate(-45deg);
+}
+
+@media (max-width: 768px) {
+    .mobileMenuBtn {
+        display: block;
+    }
+
+    .nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 80%;
+        max-width: 400px;
+        background-color: var(--bg-secondary);
+        flex-direction: column;
+        justify-content: center;
+        padding: var(--space-12) var(--space-8);
+        transition: right var(--transition-bounce);
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav.mobileOpen {
+        right: 0;
+    }
+
+    .navLinks {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-6);
+        margin-bottom: var(--space-8);
+    }
+
+    .navLinks a {
+        font-size: 1.25rem;
+    }
+}
