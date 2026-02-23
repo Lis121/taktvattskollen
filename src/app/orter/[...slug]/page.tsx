@@ -7,6 +7,8 @@ import CtaButton from "@/components/CtaButton";
 import Link from "next/link";
 import styles from "../../page.module.css";
 
+export const runtime = 'edge';
+
 // Config - This interacts with the SaaS Platform
 const SAAS_API_URL = "https://www.alstras.com";
 const PROJECT_ID = "ddaa17ca-0d74-4394-9a22-a6ff4a8e249f";

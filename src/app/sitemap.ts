@@ -2,6 +2,7 @@ import type { MetadataRoute } from 'next';
 import { cities } from '@/lib/cities';
 
 export const dynamic = 'force-dynamic';
+export const runtime = 'edge';
 
 const BASE_URL = 'https://taktvattskollen.se';
 const SAAS_API_URL = "https://www.alstras.com";
