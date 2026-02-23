@@ -226,8 +226,8 @@ export default function Home() {
         </section>
 
         {/* Calculator / CTA Section */}
-        <section id="kalkylator" className={styles.ctaSection}>
-          <div className="container">
+        <section id="kontakt" className={styles.ctaSection}>
+          <div className="container" id="kalkylator">
             <FadeUpSection className={styles.ctaContent}>
               <h2>Redo att ge taket nytt liv?</h2>
               <p>Räkna ut ett uppskattat pris direkt här nedan, eller skicka in en förfrågan för en gratis besiktning.</p>
