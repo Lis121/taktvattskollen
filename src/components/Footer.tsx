@@ -49,7 +49,6 @@ export default function Footer() {
                     <h4 className={styles.heading}>Kontakt</h4>
                     <ul className={styles.links}>
                         <li><a href="mailto:info@taktvattskollen.se">info@taktvattskollen.se</a></li>
-                        <li><a href="tel:+46000000000">000 - 000 00 00</a></li>
                         <li>Sverige</li>
                     </ul>
                 </div>
