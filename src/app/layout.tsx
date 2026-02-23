@@ -9,6 +9,9 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'Taktvättskollen | Professionell Takvård',
   description: 'Vi erbjuder professionell takrengöring och algbehandling för hela Sverige. Få en fri offert idag!',
+  icons: {
+    icon: '/icon.png',
+  },
 };
 
 export default function RootLayout({
