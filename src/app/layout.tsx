@@ -48,6 +48,17 @@ export default function RootLayout({
   return (
     <html lang="sv">
       <head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q2469Q253J" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-Q2469Q253J');
+            `
+          }}
+        />
         <script
           type="text/javascript"
           dangerouslySetInnerHTML={{
