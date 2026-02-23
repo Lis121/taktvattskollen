@@ -87,17 +87,46 @@ export default function PriceCalculator() {
         e.preventDefault();
         setIsSubmitting(true);
 
-        // Simulate API call
-        await new Promise((resolve) => setTimeout(resolve, 1500));
+        try {
+            const response = await fetch("https://alstras.pages.dev/api/public/leads", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    project_id: "ddaa17ca-0d74-4394-9a22-a6ff4a8e249f", // Taktvättskollens Projekt-ID
+                    customer_data: {
+                        name,
+                        email,
+                        phone,
+                        zip_code: zipCode,
+                        service: "Taktvätt",
+                        message: `Takarea: ${area} m²\nTaktyp: ${roofType}\nMossa: ${mossLevel}\nUppskattat pris: ${pricing?.finalPrice} kr`,
+                        area: `${area} m²`,
+                        roof_type: roofType,
+                        moss_level: mossLevel,
+                        estimated_price: pricing?.finalPrice
+                    },
+                    page_id: "price-calculator"
+                }),
+            });
 
-        setIsSubmitting(false);
-        setIsSuccess(true);
-        setCurrentStep(5); // Move to Success State (Past final step)
+            const result = await response.json();
 
-        console.log("Lead submitted:", {
-            name, email, phone, zipCode,
-            roofDetails: { area, roofType, mossLevel, estimatedPrice: pricing?.finalPrice }
-        });
+            if (response.ok && result.success) {
+                console.log("Success:", result.message);
+                setIsSuccess(true);
+                setCurrentStep(5); // Move to Success State (Past final step)
+            } else {
+                console.error("API Error:", result.message);
+                alert("Ett fel uppstod när offertförfrågan skickades. Vänligen försök igen.");
+            }
+        } catch (error) {
+            console.error("Network Error:", error);
+            alert("Nätverksfel. Kontrollera din uppkoppling och försök igen.");
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     // Calculate progress percentage
