@@ -122,9 +122,9 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
 
                 {/* 2. Standardized Local Value Proposition with Semantic LSI Keywords */}
                 <section className={`${styles.servicesSection} section`}>
-                    <div className="container" style={{ textAlign: 'center', maxWidth: '800px' }}>
-                        <h2 style={{ marginBottom: '1rem' }}>Varför tvätta taket och fasaden i {cityObj.name}?</h2>
-                        <p style={{ fontSize: '1.125rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                    <div className={`container ${styles.sectionHeader}`}>
+                        <h2>Varför tvätta taket och fasaden i {cityObj.name}?</h2>
+                        <p style={{ fontSize: '1.125rem', lineHeight: 1.6 }}>
                             Klimatet i och omkring {cityObj.name} utsätter hustak och fasader för stora påfrestningar året runt.
                             Mossa, alger och lav binder fukt mot takpannorna vilket i värsta fall kan leda till svåra frostsprängningar
                             under vinterhalvåret. Genom en professionell taktvätt, skonsam fasadtvätt och långtidsverkande alg- och mossborttagning
