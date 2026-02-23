@@ -65,16 +65,6 @@ export default function Home() {
                 alt="Rent och fint tak på svensk villa"
                 className={styles.heroImage}
               />
-              <div className={styles.trustBadges}>
-                <div className={styles.badge}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
-                  Nöjd-kund-garanti
-                </div>
-                <div className={styles.badge}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                  ROT-Avdrag (30%)
-                </div>
-              </div>
             </div>
           </div>
         </section>

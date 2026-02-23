@@ -175,25 +175,39 @@ export default function PriceCalculator() {
                         <h4 className={styles.stepTitle}>Vilken typ av tak har du?</h4>
                         <div className={styles.radioCardGrid}>
                             <div className={`${styles.radioCard} ${roofType === 'betong' ? styles.active : ''}`} onClick={() => setRoofType('betong')}>
-                                <svg className={styles.cardIcon} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+                                <svg className={styles.cardIcon} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                                    {/* Betongpanna: Dubbla böjda linjer som symboliserar profilen */}
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 14c2.5-3 5.5-3 8 0s5.5 3 8 0M4 10c2.5-3 5.5-3 8 0s5.5 3 8 0" />
+                                </svg>
                                 <div>
                                     <div className={styles.cardLabel}>Betongpannor</div>
                                 </div>
                             </div>
                             <div className={`${styles.radioCard} ${roofType === 'tegel' ? styles.active : ''}`} onClick={() => setRoofType('tegel')}>
-                                <svg className={styles.cardIcon} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+                                <svg className={styles.cardIcon} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                                    {/* Tegelpanna: Klassiskt V-format mönster / skålform */}
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 15c3-4 6-4 9 0s6 4 9 0M7 8c2.5-3 4.5-3 7 0" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 15V8" />
+                                </svg>
                                 <div>
                                     <div className={styles.cardLabel}>Tegelpannor</div>
                                 </div>
                             </div>
                             <div className={`${styles.radioCard} ${roofType === 'plat' ? styles.active : ''}`} onClick={() => setRoofType('plat')}>
-                                <svg className={styles.cardIcon} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" /></svg>
+                                <svg className={styles.cardIcon} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                                    {/* Plåttak: Raka falsar / linjer uppåt */}
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 18l4-12m4 12l4-12m4 12L16 6" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M2 18h20" />
+                                </svg>
                                 <div>
                                     <div className={styles.cardLabel}>Plåttak</div>
                                 </div>
                             </div>
                             <div className={`${styles.radioCard} ${roofType === 'papp' ? styles.active : ''}`} onClick={() => setRoofType('papp')}>
-                                <svg className={styles.cardIcon} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>
+                                <svg className={styles.cardIcon} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                                    {/* Papptak / Shingel: Överlappande rektanglar / struktur */}
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M3 14h18M7 10v4M17 10v4M12 6v4M12 14v4" />
+                                </svg>
                                 <div>
                                     <div className={styles.cardLabel}>Papptak / Shingel</div>
                                 </div>
