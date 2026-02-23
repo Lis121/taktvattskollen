@@ -21,9 +21,8 @@ export default function Navbar() {
         <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
             <div className={`container ${styles.navContainer}`}>
                 <Link href="/" className={styles.logo}>
-                    Taktvättskollen
+                    Taktvätts<span className={styles.accent}>kollen</span>
                 </Link>
-
                 <nav className={`${styles.nav} ${isMobileMenuOpen ? styles.mobileOpen : ''}`}>
                     <ul className={styles.navLinks}>
                         <li><Link href="#tjanster" onClick={() => setIsMobileMenuOpen(false)}>Våra Tjänster</Link></li>

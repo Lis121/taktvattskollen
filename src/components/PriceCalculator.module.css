@@ -285,3 +285,240 @@
     margin: 0;
     line-height: 1.5;
 }
+
+/* Wizard Specific Styles */
+
+.progressContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-6);
+    position: relative;
+}
+
+.progressBarBackground {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background-color: var(--border-color);
+    z-index: 1;
+    transform: translateY(-50%);
+    border-radius: 2px;
+}
+
+.progressBarFill {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 4px;
+    background-color: var(--brand-primary);
+    z-index: 2;
+    transform: translateY(-50%);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.progressStep {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: var(--bg-primary);
+    border: 2px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    z-index: 3;
+    transition: all 0.3s ease;
+}
+
+.progressStep.active {
+    border-color: var(--brand-primary);
+    color: var(--brand-primary);
+}
+
+.progressStep.completed {
+    background-color: var(--brand-primary);
+    border-color: var(--brand-primary);
+    color: white;
+}
+
+.wizardStep {
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.stepTitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-4);
+    text-align: center;
+}
+
+/* Radio Cards */
+
+.radioCardGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+}
+
+@media (min-width: 640px) {
+    .radioCardGrid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .radioCardGrid.threeCols {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.radioCard {
+    background-color: var(--bg-primary);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.radioCard:hover {
+    border-color: var(--brand-secondary);
+    background-color: rgba(14, 165, 233, 0.02);
+}
+
+.radioCard.active {
+    border-color: var(--brand-primary);
+    background-color: rgba(14, 165, 233, 0.05);
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.15);
+}
+
+.cardIcon {
+    width: 48px;
+    height: 48px;
+    color: var(--text-secondary);
+    transition: color 0.2s ease;
+}
+
+.radioCard.active .cardIcon {
+    color: var(--brand-primary);
+}
+
+.cardLabel {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+}
+
+.cardDesc {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+/* Wizard Navigation */
+
+.wizardActions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--space-8);
+    gap: var(--space-4);
+}
+
+.backBtn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.backBtn:hover {
+    background: var(--bg-primary);
+    border-color: var(--text-secondary);
+}
+
+.nextBtn {
+    flex-grow: 1;
+}
+
+/* Specific Price/Discount Styling */
+
+.priceBreakdown {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.originalPrice {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+.discountBadge {
+    background-color: var(--accent-success);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-2);
+    display: inline-block;
+}
+
+/* Trust Badges */
+.trustBadges {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-bottom: var(--space-6);
+    background: var(--bg-primary);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    border: 1px dashed var(--border-color);
+}
+
+.trustBadge {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.checkIcon {
+    color: var(--accent-success);
+    width: 16px;
+    height: 16px;
+}

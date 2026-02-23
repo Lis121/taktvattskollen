@@ -97,7 +97,7 @@
 
 /* Services Section */
 .servicesSection {
-    background-color: var(--bg-secondary);
+    background-color: #ffffff;
 }
 
 .sectionHeader {
@@ -109,7 +109,11 @@
 }
 
 .sectionHeader h2 {
-    color: var(--text-primary);
+    color: #0f172a;
+}
+
+.sectionHeader p {
+    color: #475569;
 }
 
 .servicesGrid {

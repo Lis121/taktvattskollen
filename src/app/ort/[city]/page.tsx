@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ city: str
 
     const title = `Takrengöring ${cityObj.name} | Bäst Pris & Nöjd-Kund-Garanti`;
     const description = `Professionell takrengöring, fasadtvätt och algbehandling i ${cityObj.name}. Vi gör ditt tak som nytt igen. Snabbt, miljövänligt och med ROT-avdrag. Få en fri offert!`;
-    const url = `https://takrengoring.nu/ort/${cityObj.slug}`;
+    const url = `https://taktvattskollen.se/ort/${cityObj.slug}`;
 
     return {
         title,
@@ -56,7 +56,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
         "@type": "RoofingContractor",
         "name": `Taktvättskollen ${cityObj.name}`,
         "description": `Experter på tak- och fasadtvätt i ${cityObj.name}. Vi tar bort mossa, alger och lav.`,
-        "url": `https://takrengoring.nu/ort/${cityObj.slug}`,
+        "url": `https://taktvattskollen.se/ort/${cityObj.slug}`,
         "areaServed": {
             "@type": "City",
             "name": cityObj.name
@@ -72,13 +72,13 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Hem",
-                "item": "https://takrengoring.nu/"
+                "item": "https://taktvattskollen.se/"
             },
             {
                 "@type": "ListItem",
                 "position": 2,
                 "name": `Takrengöring i ${cityObj.name}`,
-                "item": `https://takrengoring.nu/ort/${cityObj.slug}`
+                "item": `https://taktvattskollen.se/ort/${cityObj.slug}`
             }
         ]
     };

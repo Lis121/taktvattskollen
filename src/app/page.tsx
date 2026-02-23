@@ -9,12 +9,13 @@ import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import styles from './page.module.css';
 import reviewStyles from './reviews.module.css';
 
-function FadeUpSection({ children, className = '' }: { children: React.ReactNode, className?: string }) {
+function FadeUpSection({ children, className = '', style }: { children: React.ReactNode, className?: string, style?: React.CSSProperties }) {
   const [ref, isIntersecting] = useIntersectionObserver({ threshold: 0.1 });
   return (
     <div
       ref={ref as any}
       className={`fade-up-element ${isIntersecting ? 'visible' : ''} ${className}`}
+      style={style}
     >
       {children}
     </div>
@@ -248,17 +249,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Localized SEO Links */}
-        <section className={styles.seoLinksSection}>
-          <div className="container">
-            <div style={{ textAlign: 'center', padding: 'var(--space-8) 0' }}>
-              <p style={{ color: 'var(--text-secondary)', marginBottom: 'var(--space-2)' }}>Letar du efter takrengöring nära dig?</p>
-              <a href="/ort/stockholm" className="btn btn-secondary">
-                Takrengöring i Stockholm
-              </a>
-            </div>
-          </div>
-        </section>
       </main>
       <Footer />
     </>

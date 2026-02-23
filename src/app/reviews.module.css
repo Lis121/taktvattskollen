@@ -1,7 +1,6 @@
 .reviewsSection {
-    background-color: var(--bg-primary);
+    background-color: #ffffff;
     padding: var(--space-16) 0;
-    border-top: 1px solid var(--border-color);
 }
 
 .sectionHeader {
@@ -10,7 +9,11 @@
 }
 
 .sectionHeader h2 {
-    color: var(--text-primary);
+    color: #0f172a;
+}
+
+.sectionHeader p {
+    color: #475569;
 }
 
 .reviewsGrid {
@@ -26,7 +29,7 @@
 }
 
 .reviewCard {
-    background: var(--bg-secondary);
+    background: var(--bg-primary);
     border-radius: var(--radius-lg);
     padding: var(--space-6) var(--space-8);
     box-shadow: var(--shadow-sm);
@@ -39,6 +42,7 @@
 .reviewCard:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-md);
+    border-color: var(--brand-primary);
 }
 
 .stars {
