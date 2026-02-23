@@ -11,6 +11,7 @@
     "pages:dev": "npx wrangler pages dev --compatibility-date=2024-09-23 --compatibility-flags=nodejs_compat"
   },
   "dependencies": {
+    "@tailwindcss/typography": "^0.5.19",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3"

@@ -1,3 +1,6 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
 :root {
   /* Core Colors */
   --bg-primary: #f8fafc;
