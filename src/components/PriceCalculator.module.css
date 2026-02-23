@@ -376,6 +376,7 @@
 .radioCardGrid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 1fr;
     gap: var(--space-4);
     margin-bottom: var(--space-6);
 }
@@ -398,6 +399,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    height: 100%;
     gap: var(--space-3);
     cursor: pointer;
     transition: all 0.2s ease;

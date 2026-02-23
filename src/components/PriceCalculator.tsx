@@ -15,6 +15,7 @@ export default function PriceCalculator() {
     const [mossLevel, setMossLevel] = useState('lite');
 
     // Form State
+    const [formPhase, setFormPhase] = useState<1 | 2>(1);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
@@ -71,11 +72,18 @@ export default function PriceCalculator() {
         return {
             originalPrice: Math.round(totalIncMoms),
             finalPrice: Math.round(finalPrice),
-            rotDiscount: Math.round(rotDeduction)
+            rotDiscount: Math.round(rotDeduction),
+            rangeMin: Math.round(totalExMoms * 0.85), // Rough estimate for the freemium view
+            rangeMax: Math.round(totalExMoms * 1.15)
         };
     }, [area, roofType, mossLevel]);
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handlePhase1Submit = (e: React.FormEvent) => {
+        e.preventDefault();
+        setFormPhase(2);
+    };
+
+    const handleFinalSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
 
@@ -100,7 +108,7 @@ export default function PriceCalculator() {
             <div className={styles.calculatorHeader}>
                 <h3>Prisuträknare & Offert</h3>
                 {currentStep < 5 && (
-                    <p>Fyll i uppgifterna i vår kalkylator för att se ditt uppskattade pris direkt, och få in exakta offerter från upp till 3 lokala företag var som helst i Sverige.</p>
+                    <p>Fyll i uppgifterna i vår kalkylator för att se ditt uppskattade pris direkt och få in exakta offerter från upp till 3 lokala företag var som helst i Sverige.</p>
                 )}
             </div>
 
@@ -261,7 +269,13 @@ export default function PriceCalculator() {
                     <div className={`${styles.wizardStep} ${styles.leadSection}`} style={{ borderTop: "none", paddingTop: 0 }}>
                         <h4 className={styles.stepTitle}>Fyll i för att se ditt pris & offerter</h4>
                         <p className={styles.leadSubtitle} style={{ textAlign: "center", marginBottom: "var(--space-6)" }}>
-                            Din kalkyl är redo! För att se priset och automatiskt matcha det mot upp till 3 prisvärda, lokala taktvättsföretag behöver vi veta var du bor.
+                            {pricing ? (
+                                <>Ett tak på {area} m² kostar vanligtvis mellan <strong>{pricing.rangeMin.toLocaleString('sv-SE')} och {pricing.rangeMax.toLocaleString('sv-SE')} kr</strong> (före ROT).</>
+                            ) : (
+                                "Din kalkyl är redo!"
+                            )}
+                            <br /><br />
+                            Fyll i var du bor för att se ditt <strong>exakta pris</strong> inklusive ROT-avdrag och matchas med upp till 3 prisvärda lokala experter.
                         </p>
 
                         <div className={styles.trustBadges}>
@@ -275,36 +289,47 @@ export default function PriceCalculator() {
                             </div>
                         </div>
 
-                        <form onSubmit={handleSubmit} className={styles.leadForm}>
-                            <div className={styles.formRow}>
-                                <div className={styles.inputGroup}>
-                                    <label htmlFor="name">För- och efternamn</label>
-                                    <input type="text" id="name" required value={name} onChange={e => setName(e.target.value)} className={styles.input} placeholder="T.ex. Anna Svensson" />
+                        {formPhase === 1 ? (
+                            <form onSubmit={handlePhase1Submit} className={styles.leadForm}>
+                                <div className={styles.formRow}>
+                                    <div className={styles.inputGroup}>
+                                        <label htmlFor="zipCode">Postnummer</label>
+                                        <input type="text" id="zipCode" required value={zipCode} onChange={e => setZipCode(e.target.value)} className={styles.input} placeholder="T.ex. 123 45" />
+                                    </div>
+                                    <div className={styles.inputGroup}>
+                                        <label htmlFor="email">E-postadress</label>
+                                        <input type="email" id="email" required value={email} onChange={e => setEmail(e.target.value)} className={styles.input} placeholder="anna@exempel.se" />
+                                    </div>
                                 </div>
-                                <div className={styles.inputGroup}>
-                                    <label htmlFor="zipCode">Postnummer</label>
-                                    <input type="text" id="zipCode" required value={zipCode} onChange={e => setZipCode(e.target.value)} className={styles.input} placeholder="T.ex. 123 45" />
-                                </div>
-                            </div>
-                            <div className={styles.formRow}>
-                                <div className={styles.inputGroup}>
-                                    <label htmlFor="email">E-postadress</label>
-                                    <input type="email" id="email" required value={email} onChange={e => setEmail(e.target.value)} className={styles.input} placeholder="anna@exempel.se" />
-                                </div>
-                                <div className={styles.inputGroup}>
-                                    <label htmlFor="phone">Telefonnummer</label>
-                                    <input type="tel" id="phone" value={phone} onChange={e => setPhone(e.target.value)} className={styles.input} placeholder="070 123 45 67" />
-                                </div>
-                            </div>
 
-                            <div className={styles.wizardActions}>
-                                <button type="button" onClick={prevStep} className={styles.backBtn}>Bakåt</button>
-                                <button type="submit" disabled={isSubmitting} className={`btn btn-primary ${styles.nextBtn}`}>
-                                    {isSubmitting ? 'Beräknar...' : 'Visa mitt pris'}
-                                </button>
-                            </div>
-                            <p className={styles.privacyNote}>Genom att klicka godkänner du våra användarvillkor. Dina uppgifter delas endast med 1 till 3 professionella företag lokalt för att ge dig offerter.</p>
-                        </form>
+                                <div className={styles.wizardActions}>
+                                    <button type="button" onClick={prevStep} className={styles.backBtn}>Bakåt</button>
+                                    <button type="submit" className={`btn btn-primary ${styles.nextBtn}`}>Fortsätt</button>
+                                </div>
+                                <p className={styles.privacyNote}>Vi delar endast dina uppgifter med upp till 3 bäst matchade företag i ditt postnummer. Ingen spam.</p>
+                            </form>
+                        ) : (
+                            <form onSubmit={handleFinalSubmit} className={styles.leadForm}>
+                                <div className={styles.formRow}>
+                                    <div className={styles.inputGroup}>
+                                        <label htmlFor="name">För- och efternamn</label>
+                                        <input type="text" id="name" required value={name} onChange={e => setName(e.target.value)} className={styles.input} placeholder="T.ex. Anna Svensson" />
+                                    </div>
+                                    <div className={styles.inputGroup}>
+                                        <label htmlFor="phone">Telefonnummer <span style={{ fontWeight: 'normal', color: 'var(--text-secondary)' }}>(Valfritt)</span></label>
+                                        <input type="tel" id="phone" value={phone} onChange={e => setPhone(e.target.value)} className={styles.input} placeholder="070 123 45 67" />
+                                    </div>
+                                </div>
+
+                                <div className={styles.wizardActions}>
+                                    <button type="button" onClick={() => setFormPhase(1)} className={styles.backBtn}>Bakåt</button>
+                                    <button type="submit" disabled={isSubmitting} className={`btn btn-primary ${styles.nextBtn}`}>
+                                        {isSubmitting ? 'Beräknar...' : 'Se mitt exakta pris'}
+                                    </button>
+                                </div>
+                                <p className={styles.privacyNote}>Ett telefonnummer gör det lättare för företagen att snabbt återkoppla med en skriftlig offert. Genom att klicka godkänner du våra användarvillkor.</p>
+                            </form>
+                        )}
                     </div>
                 )}
 

@@ -6,6 +6,13 @@
     align-items: center;
     position: relative;
     overflow: hidden;
+    margin-bottom: var(--space-12);
+}
+
+@media (min-width: 1024px) {
+    .hero {
+        margin-bottom: 0;
+    }
 }
 
 .heroBackground {

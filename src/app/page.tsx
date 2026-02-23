@@ -55,7 +55,7 @@ export default function Home() {
               </p>
               <div className={styles.heroButtonGroup}>
                 <a href="#kalkylator" className="btn btn-primary">Räkna ut pris</a>
-                <a href="#tjanster" className="btn btn-secondary">Våra Tjänster</a>
+                <a href="#tjanster" className="btn btn-secondary">Se tjänster</a>
               </div>
             </div>
 
@@ -73,8 +73,8 @@ export default function Home() {
         <section id="tjanster" className={`${styles.servicesSection} section`}>
           <div className="container">
             <FadeUpSection className={styles.sectionHeader}>
-              <h2>Våra Tjänster</h2>
-              <p>Vi erbjuder en komplett lösning för ditt tak som motverkar påväxt och fuktskador.</p>
+              <h2>Tjänster för ditt tak</h2>
+              <p>Våra kvalitetssäkrade experter erbjuder kompletta lösningar för ditt tak som motverkar påväxt och fuktskador.</p>
             </FadeUpSection>
 
             <div className={styles.servicesGrid}>
@@ -134,7 +134,7 @@ export default function Home() {
                   </div>
                   <div className={styles.featureContent}>
                     <h4>Ekonomiskt smart</h4>
-                    <p>Att tvätta och behandla taket med vår metod är upp till 80% billigare än att byta hela taket.</p>
+                    <p>Att tvätta och behandla taket professionellt är upp till 80% billigare än att byta hela taket.</p>
                   </div>
                 </div>
 
@@ -144,7 +144,7 @@ export default function Home() {
                   </div>
                   <div className={styles.featureContent}>
                     <h4>Långtidsverkande skydd</h4>
-                    <p>Vår algbehandling hindrar ny påväxt från att etablera sig under flera års tid.</p>
+                    <p>En professionell algbehandling hindrar ny påväxt från att etablera sig under flera års tid.</p>
                   </div>
                 </div>
               </div>
@@ -163,18 +163,18 @@ export default function Home() {
         <section className={reviewStyles.reviewsSection}>
           <div className="container">
             <FadeUpSection className={reviewStyles.sectionHeader}>
-              <h2>Vad våra kunder säger</h2>
-              <p>Vi är stolta över att ha hundratals nöjda kunder runt om i Sverige.</p>
+              <h2>Vad husägare säger</h2>
+              <p>Vi är stolta över att ha hjälpt hundratals husägare runt om i Sverige att hitta rätt takvård.</p>
             </FadeUpSection>
 
             <div className={reviewStyles.reviewsGrid}>
-              <FadeUpSection className="delay-1">
+              <FadeUpSection className="delay-1" style={{ height: '100%' }}>
                 <div className={reviewStyles.reviewCard}>
                   <div className={reviewStyles.stars}>
                     {'★★★★★'.split('').map((star, i) => <span key={i}>{star}</span>)}
                   </div>
                   <div className={reviewStyles.quote}>
-                    <p className={reviewStyles.quoteText}>Helt otroligt resultat! Taket ser bokstavligen ut som nytt igen. Killarna var snabba, trevliga och städade exemplariskt efter sig.</p>
+                    <p className={reviewStyles.quoteText}>Fick tre seriösa offerter redan nästa dag och valde företaget som kändes bäst. Helt otroligt resultat på taket, det ser bokstavligen ut som nytt! Killarna var snabba och städade exemplariskt efter sig.</p>
                   </div>
                   <div className={reviewStyles.author}>
                     <div className={reviewStyles.avatar}>M</div>
@@ -186,31 +186,31 @@ export default function Home() {
                 </div>
               </FadeUpSection>
 
-              <FadeUpSection className="delay-2">
+              <FadeUpSection className="delay-2" style={{ height: '100%' }}>
                 <div className={reviewStyles.reviewCard}>
                   <div className={reviewStyles.stars}>
                     {'★★★★★'.split('').map((star, i) => <span key={i}>{star}</span>)}
                   </div>
                   <div className={reviewStyles.quote}>
-                    <p className={reviewStyles.quoteText}>Fick en offert snabbt och de kunde boka in arbetet redan nästa vecka. Blev varnad av grannar om att högtryckstvätt förstör pannorna, men Taktvättskollen har en skonsam metod som fungerade perfekt.</p>
+                    <p className={reviewStyles.quoteText}>Så skönt att slippa leta själv. Företaget vi matchades med var superkunniga. Blev varnad av grannar om att högtryckstvätt förstör pannorna, men vi fick hjälp av certifierade experter med en skonsam metod.</p>
                   </div>
                   <div className={reviewStyles.author}>
-                    <div className={reviewStyles.avatar}>A</div>
+                    <div className={reviewStyles.avatar}>K</div>
                     <div className={reviewStyles.authorInfo}>
-                      <h4>Anna L.</h4>
+                      <h4>Karin M.</h4>
                       <span>Radhus, Göteborg</span>
                     </div>
                   </div>
                 </div>
               </FadeUpSection>
 
-              <FadeUpSection className="delay-3">
+              <FadeUpSection className="delay-3" style={{ height: '100%' }}>
                 <div className={reviewStyles.reviewCard}>
                   <div className={reviewStyles.stars}>
                     {'★★★★★'.split('').map((star, i) => <span key={i}>{star}</span>)}
                   </div>
                   <div className={reviewStyles.quote}>
-                    <p className={reviewStyles.quoteText}>Bästa investeringen vi gjort för huset på länge. ROT-avdraget skötte de automatiskt på fakturan vilket gjorde det hela otroligt smidigt.</p>
+                    <p className={reviewStyles.quoteText}>Bästa tjänsten för att hitta bra hantverkare! Gick supersnabbt att jämföra priser. Takvårdaren vi valde skötte allt, inklusive ROT-avdraget direkt på fakturan.</p>
                   </div>
                   <div className={reviewStyles.author}>
                     <div className={reviewStyles.avatar}>J</div>
