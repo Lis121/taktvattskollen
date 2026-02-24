@@ -64,13 +64,12 @@ export default function PriceCalculator() {
         }
 
         const totalExMoms = (baseFeeExMoms + (area * pricePerSqmExMoms)) * roofMultiplier * mossMultiplier;
-        const totalIncMoms = totalExMoms * 1.25;
-        const laborCostIncMoms = totalIncMoms * 0.8;
-        const rotDeduction = laborCostIncMoms * 0.3;
-        const finalPrice = totalIncMoms - rotDeduction;
+        const laborCostExMoms = totalExMoms * 0.8;
+        const rotDeduction = laborCostExMoms * 0.3;
+        const finalPrice = totalExMoms - rotDeduction;
 
         return {
-            originalPrice: Math.round(totalIncMoms),
+            originalPrice: Math.round(totalExMoms),
             finalPrice: Math.round(finalPrice),
             rotDiscount: Math.round(rotDeduction),
             rangeMin: Math.round(totalExMoms * 0.85), // Rough estimate for the freemium view
@@ -372,7 +371,7 @@ export default function PriceCalculator() {
                                 <div className={styles.originalPrice}>{pricing.originalPrice.toLocaleString('sv-SE')} kr</div>
                                 <div className={styles.resultPrice}>{pricing.finalPrice.toLocaleString('sv-SE')} kr</div>
                             </div>
-                            <p className={styles.rotText} style={{ marginTop: "var(--space-2)" }}>Inklusive lagstadgad moms</p>
+                            <p className={styles.rotText} style={{ marginTop: "var(--space-2)" }}>Exklusive moms</p>
                         </div>
 
                         <div className={styles.successMessage}>
