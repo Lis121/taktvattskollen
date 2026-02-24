@@ -55,17 +55,17 @@ export default async function PseoPage(props: Props) {
             <Navbar />
             <main>
                 {/* 1. Hero Section with Form */}
-                <section className={styles.hero} style={{ minHeight: '60vh' }}>
+                <section className={`${styles.hero} pb-16 md:pb-24 pt-32`} style={{ minHeight: 'auto' }}>
                     <div className={styles.heroBackground}></div>
-                    <div className={`container ${styles.heroContent}`}>
+                    <div className={`container ${styles.heroContent} gap-y-8 md:gap-y-0`}>
                         <div className={`${styles.heroText} animate-fade-in`}>
                             <h1 style={{ color: 'var(--brand-primary)' }}>{data.title}</h1>
-                            <p style={{ color: 'var(--text-secondary)' }}>
+                            <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem' }}>
                                 {data.excerpt || "Vi är dina lokala experter på takrengöring och algbehandling. Få en fri offert nedan."}
                             </p>
                         </div>
 
-                        <div className={`animate-fade-in delay-2`} style={{ width: '100%', maxWidth: '500px', justifySelf: 'center' }}>
+                        <div className={`animate-fade-in delay-2`} style={{ width: '100%', maxWidth: '500px', justifySelf: 'center', marginTop: '-1rem' }}>
                             <PriceCalculator />
                         </div>
                     </div>
