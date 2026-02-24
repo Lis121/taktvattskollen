@@ -150,6 +150,10 @@ export default function PriceCalculator() {
 
             const response = await fetch(`https://alstras.pages.dev/api/public/leads/${leadId}/images`, {
                 method: "POST",
+                mode: "cors",
+                headers: {
+                    "Accept": "application/json",
+                },
                 body: formData,
             });
 
