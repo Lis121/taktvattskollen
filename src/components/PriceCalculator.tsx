@@ -6,7 +6,7 @@ import styles from './PriceCalculator.module.css';
 export default function PriceCalculator() {
     // Current Wizard Step
     const [currentStep, setCurrentStep] = useState(1);
-    const totalSteps = 4;
+    const totalSteps = 5;
 
     // Calculator State
     const [area, setArea] = useState<number>(80);
@@ -19,9 +19,13 @@ export default function PriceCalculator() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
+    const [streetAddress, setStreetAddress] = useState('');
     const [zipCode, setZipCode] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
+    const [stories, setStories] = useState('1 plan');
+    const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+    const [isUploading, setIsUploading] = useState(false);
 
     // Handlers
     const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -87,12 +91,14 @@ export default function PriceCalculator() {
                         name,
                         email,
                         phone,
+                        street_address: streetAddress,
                         zip_code: zipCode,
                         service: "Taktvätt",
-                        message: `Takarea: ${area} m²\nTaktyp: ${roofType}\nMossa: ${mossLevel}\nUppskattat pris: ${pricing?.finalPrice} kr`,
+                        message: `Takarea: ${area} m²\nTaktyp: ${roofType}\nMossa: ${mossLevel}\nVåningar: ${stories}\nUppskattat pris: ${pricing?.finalPrice} kr`,
                         area: `${area} m²`,
                         roof_type: roofType,
                         moss_level: mossLevel,
+                        stories: stories,
                         estimated_price: pricing?.finalPrice
                     },
                     page_id: "price-calculator"
@@ -104,7 +110,7 @@ export default function PriceCalculator() {
             if (response.ok && result.success) {
                 console.log("Success:", result.message);
                 setIsSuccess(true);
-                setCurrentStep(5); // Move to Success State (Past final step)
+                setCurrentStep(6); // Move to Success State (Past final step)
             } else {
                 console.error("API Error:", result.message);
                 alert("Ett fel uppstod när offertförfrågan skickades. Vänligen försök igen.");
@@ -117,6 +123,32 @@ export default function PriceCalculator() {
         }
     };
 
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files) {
+            const filesArray = Array.from(e.target.files).slice(0, 2); // Max 2 images
+            setSelectedFiles(prev => [...prev, ...filesArray].slice(0, 2));
+        }
+    };
+
+    const uploadImages = async () => {
+        if (selectedFiles.length === 0) return;
+        setIsUploading(true);
+        try {
+            // Placeholder: Replace with actual image upload endpoint (e.g. Supabase Storage)
+            // await fetch('/api/upload', { method: 'POST', body: formData });
+
+            // Simulating upload time
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            alert("Bilder uppladdade! Tack.");
+            setSelectedFiles([]);
+        } catch (error) {
+            console.error("Upload Error:", error);
+            alert("Det gick inte att ladda upp bilderna. Försök igen.");
+        } finally {
+            setIsUploading(false);
+        }
+    };
+
     // Calculate progress percentage
     const progressPercentage = ((currentStep - 1) / (totalSteps - 1)) * 100;
 
@@ -124,17 +156,17 @@ export default function PriceCalculator() {
         <div className={styles.calculatorWrapper}>
             <div className={styles.calculatorHeader}>
                 <h3>Prisuträknare & Offert</h3>
-                {currentStep < 5 && (
+                {currentStep < 6 && (
                     <p>Fyll i uppgifterna i vår kalkylator för att se ditt uppskattade pris direkt och få in exakta offerter från upp till 3 lokala företag var som helst i Sverige.</p>
                 )}
             </div>
 
             {/* Wizard Progress Bar */}
-            {currentStep < 5 && (
+            {currentStep < 6 && (
                 <div className={styles.progressContainer}>
                     <div className={styles.progressBarBackground}></div>
                     <div className={styles.progressBarFill} style={{ width: `${progressPercentage}%` }}></div>
-                    {[1, 2, 3, 4].map((step) => (
+                    {[1, 2, 3, 4, 5].map((step) => (
                         <div
                             key={step}
                             className={`${styles.progressStep} ${currentStep === step ? styles.active : ''} ${currentStep > step ? styles.completed : ''}`}
@@ -276,13 +308,53 @@ export default function PriceCalculator() {
 
                         <div className={styles.wizardActions}>
                             <button onClick={prevStep} className={styles.backBtn}>Bakåt</button>
+                            <button onClick={nextStep} className={`btn btn-primary ${styles.nextBtn}`}>Nästa</button>
+                        </div>
+                    </div>
+                )}
+
+                {/* Step 4: House Height */}
+                {currentStep === 4 && (
+                    <div className={styles.wizardStep}>
+                        <h4 className={styles.stepTitle}>Hur många våningar har huset?</h4>
+                        <div className={`${styles.radioCardGrid} ${styles.threeCols}`}>
+                            <div className={`${styles.radioCard} ${stories === '1 plan' ? styles.active : ''}`} onClick={() => setStories('1 plan')}>
+                                <svg className={styles.cardIcon} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-5a2 2 0 012-2h2a2 2 0 012 2v5" />
+                                </svg>
+                                <div>
+                                    <div className={styles.cardLabel}>1 plan</div>
+                                </div>
+                            </div>
+                            <div className={`${styles.radioCard} ${stories === '1,5 plan' ? styles.active : ''}`} onClick={() => setStories('1,5 plan')}>
+                                <svg className={styles.cardIcon} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 21h18M5 21V10l7-6 7 6v11M9 21v-5a2 2 0 012-2h2a2 2 0 012 2v5" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M10 9h4" />
+                                </svg>
+                                <div>
+                                    <div className={styles.cardLabel}>1,5 plan</div>
+                                </div>
+                            </div>
+                            <div className={`${styles.radioCard} ${stories === '2+ plan' ? styles.active : ''}`} onClick={() => setStories('2+ plan')}>
+                                <svg className={styles.cardIcon} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 21h18M5 21V5a2 2 0 012-2h10a2 2 0 012 2v16M9 21v-5a2 2 0 012-2h2a2 2 0 012 2v5" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 7h6M9 11h6" />
+                                </svg>
+                                <div>
+                                    <div className={styles.cardLabel}>2+ plan</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className={styles.wizardActions}>
+                            <button onClick={prevStep} className={styles.backBtn}>Bakåt</button>
                             <button onClick={nextStep} className={`btn btn-primary ${styles.nextBtn}`}>Se mitt pris</button>
                         </div>
                     </div>
                 )}
 
-                {/* Step 4: Lead Form & Zillow Effect */}
-                {currentStep === 4 && (
+                {/* Step 5: Lead Form & Zillow Effect */}
+                {currentStep === 5 && (
                     <div className={`${styles.wizardStep} ${styles.leadSection}`} style={{ borderTop: "none", paddingTop: 0 }}>
                         <h4 className={styles.stepTitle}>Fyll i för att se ditt pris & offerter</h4>
                         <p className={styles.leadSubtitle} style={{ textAlign: "center", marginBottom: "var(--space-6)" }}>
@@ -310,9 +382,15 @@ export default function PriceCalculator() {
                             <form onSubmit={handlePhase1Submit} className={styles.leadForm}>
                                 <div className={styles.formRow}>
                                     <div className={styles.inputGroup}>
-                                        <label htmlFor="zipCode">Postnummer</label>
-                                        <input type="text" id="zipCode" required value={zipCode} onChange={e => setZipCode(e.target.value)} className={styles.input} placeholder="T.ex. 123 45" />
+                                        <label htmlFor="streetAddress">Gatuadress</label>
+                                        <input type="text" id="streetAddress" required value={streetAddress} onChange={e => setStreetAddress(e.target.value)} className={styles.input} placeholder="T.ex. Storgatan 1" />
                                     </div>
+                                    <div className={styles.inputGroup}>
+                                        <label htmlFor="zipCode">Postnummer</label>
+                                        <input type="text" id="zipCode" inputMode="numeric" pattern="[0-9]{3}\s?[0-9]{2}" required value={zipCode} onChange={e => setZipCode(e.target.value)} className={styles.input} placeholder="T.ex. 123 45" />
+                                    </div>
+                                </div>
+                                <div className={styles.formRow}>
                                     <div className={styles.inputGroup}>
                                         <label htmlFor="email">E-postadress</label>
                                         <input type="email" id="email" required value={email} onChange={e => setEmail(e.target.value)} className={styles.input} placeholder="anna@exempel.se" />
@@ -350,8 +428,8 @@ export default function PriceCalculator() {
                     </div>
                 )}
 
-                {/* Step 5: Success & Price Reveal */}
-                {currentStep === 5 && pricing && isSuccess && (
+                {/* Step 6: Success & Price Reveal */}
+                {currentStep === 6 && pricing && isSuccess && (
                     <div className={styles.wizardStep}>
                         <div className={styles.resultDetails}>
                             <p className={styles.resultLabel}>Ditt estimerade standardpris för {area} m² tak</p>
@@ -368,6 +446,52 @@ export default function PriceCalculator() {
                             <h4>Uppgifter mottagna!</h4>
                             <p>Tack {name.split(' ')[0] || ''}! Din kalkyl är klar och vi har skickat över ditt underlag till utvalda, seriösa taktvättare i ditt postnummer ({zipCode}).</p>
                             <p>Du kommer inom kort att bli kontaktad för att få exakta offerter. Det är helt normalt att de erbjuder en <span style={{ fontWeight: 600 }}>kostnadsfri visuell besiktning</span> av taket innan de ger sitt slutgiltiga prisförslag. Jämför sedan deras priser i lugn och ro med estimatet ovan!</p>
+                        </div>
+
+                        {/* Image Upload UI */}
+                        <div className={styles.uploadSection}>
+                            <h5 className={styles.uploadTitle}>Vill du ha en snabbare offert?</h5>
+                            <p className={styles.uploadDesc}>Ladda upp 1–2 bilder på taket (valfritt).</p>
+
+                            <div className={styles.uploadBox}>
+                                <input
+                                    type="file"
+                                    id="roofImages"
+                                    className={styles.fileInput}
+                                    accept="image/*"
+                                    capture="environment"
+                                    multiple
+                                    onChange={handleFileChange}
+                                />
+                                <label htmlFor="roofImages" className={styles.uploadLabel}>
+                                    <svg className={styles.uploadIcon} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                                    </svg>
+                                    <span style={{ fontWeight: 600 }}>Välj bilder eller Ta ett foto</span>
+                                    <span className={styles.uploadHint}>(Dra & släpp fungerar på dator)</span>
+                                </label>
+                            </div>
+
+                            {selectedFiles.length > 0 && (
+                                <div className={styles.selectedFilesList}>
+                                    {selectedFiles.map((file, i) => (
+                                        <div key={i} className={styles.fileItem}>
+                                            <span className={styles.fileName}>{file.name}</span>
+                                            <button
+                                                className={styles.removeFileBtn}
+                                                onClick={() => setSelectedFiles(prev => prev.filter((_, index) => index !== i))}
+                                            >✕</button>
+                                        </div>
+                                    ))}
+                                    <button
+                                        className={`btn btn-primary ${styles.uploadBtn}`}
+                                        onClick={uploadImages}
+                                        disabled={isUploading}
+                                    >
+                                        {isUploading ? 'Laddar upp...' : 'Skicka in bilder'}
+                                    </button>
+                                </div>
+                            )}
                         </div>
                     </div>
                 )}

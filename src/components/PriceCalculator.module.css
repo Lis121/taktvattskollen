@@ -138,6 +138,7 @@
     background-color: var(--bg-primary);
     color: var(--text-primary);
     font-size: 1rem;
+    min-height: 48px;
     transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
@@ -450,6 +451,21 @@
     justify-content: space-between;
     margin-top: var(--space-8);
     gap: var(--space-4);
+    position: sticky;
+    bottom: 0px;
+    background: var(--bg-secondary);
+    padding: var(--space-4) 0;
+    z-index: 10;
+    border-top: 1px solid var(--border-color);
+}
+
+@media (min-width: 768px) {
+    .wizardActions {
+        position: static;
+        border-top: none;
+        padding: 0;
+        background: transparent;
+    }
 }
 
 .backBtn {
@@ -526,4 +542,114 @@
     color: var(--accent-success);
     width: 16px;
     height: 16px;
+}
+
+/* Image Upload Section */
+.uploadSection {
+    margin-top: var(--space-8);
+    padding-top: var(--space-6);
+    border-top: 1px dashed var(--border-color);
+    text-align: center;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.uploadTitle {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+}
+
+.uploadDesc {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-4);
+}
+
+.uploadBox {
+    position: relative;
+    border: 2px dashed var(--brand-primary);
+    border-radius: var(--radius-md);
+    background: rgba(14, 165, 233, 0.05);
+    transition: all 0.2s ease;
+}
+
+.uploadBox:hover {
+    background: rgba(14, 165, 233, 0.1);
+}
+
+.fileInput {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.uploadLabel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-6);
+    gap: var(--space-2);
+    color: var(--brand-primary);
+    cursor: pointer;
+}
+
+.uploadIcon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: var(--space-2);
+}
+
+.uploadHint {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: normal;
+}
+
+.selectedFilesList {
+    margin-top: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    text-align: left;
+}
+
+.fileItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3) var(--space-4);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+}
+
+.fileName {
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+.removeFileBtn {
+    background: transparent;
+    color: var(--accent-error);
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0 var(--space-2);
+}
+
+.uploadBtn {
+    margin-top: var(--space-4);
+    width: 100%;
 }
