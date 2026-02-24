@@ -26,6 +26,7 @@ export default function PriceCalculator() {
     const [stories, setStories] = useState('1 plan');
     const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
     const [isUploading, setIsUploading] = useState(false);
+    const [leadId, setLeadId] = useState<string | null>(null);
 
     // Handlers
     const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -109,6 +110,9 @@ export default function PriceCalculator() {
 
             if (response.ok && result.success) {
                 console.log("Success:", result.message);
+                if (result.id) {
+                    setLeadId(result.id);
+                }
                 setIsSuccess(true);
                 setCurrentStep(6); // Move to Success State (Past final step)
             } else {
@@ -132,15 +136,32 @@ export default function PriceCalculator() {
 
     const uploadImages = async () => {
         if (selectedFiles.length === 0) return;
+        if (!leadId) {
+            alert("Kunde inte hitta ditt lead. Vänligen kontakta oss via mail om du har bilder du vill dela.");
+            return;
+        }
+
         setIsUploading(true);
         try {
-            // Placeholder: Replace with actual image upload endpoint (e.g. Supabase Storage)
-            // await fetch('/api/upload', { method: 'POST', body: formData });
+            const formData = new FormData();
+            selectedFiles.forEach(file => {
+                formData.append('files', file);
+            });
 
-            // Simulating upload time
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            alert("Bilder uppladdade! Tack.");
-            setSelectedFiles([]);
+            const response = await fetch(`https://alstras.pages.dev/api/public/leads/${leadId}/images`, {
+                method: "POST",
+                body: formData,
+            });
+
+            const result = await response.json();
+
+            if (response.ok && result?.success) {
+                alert("Bilder uppladdade! Tack.");
+                setSelectedFiles([]);
+            } else {
+                console.error("API Error:", result?.message);
+                alert("Ett fel uppstod vid uppladdning av bilderna. Försök igen.");
+            }
         } catch (error) {
             console.error("Upload Error:", error);
             alert("Det gick inte att ladda upp bilderna. Försök igen.");
