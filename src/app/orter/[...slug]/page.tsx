@@ -23,7 +23,28 @@ async function fetchPseoPage(slug: string) {
         const res = await fetch(`${SAAS_API_URL}/api/public/content?projectId=${PROJECT_ID}&slug=${slug}&include=related`);
 
         if (!res.ok) return null;
-        return await res.json();
+
+        const data = await res.json();
+
+        // Filter out {} from all strings so that unresolved variables like {{city}} become city
+        const sanitize = (obj: any): any => {
+            if (typeof obj === 'string') {
+                return obj.replace(/[{}]/g, '');
+            }
+            if (Array.isArray(obj)) {
+                return obj.map(sanitize);
+            }
+            if (typeof obj === 'object' && obj !== null) {
+                const newObj: any = {};
+                for (const [key, value] of Object.entries(obj)) {
+                    newObj[key] = sanitize(value);
+                }
+                return newObj;
+            }
+            return obj;
+        };
+
+        return sanitize(data);
     } catch (error) {
         console.error("pSEO Fetch Error:", error);
         return null;
