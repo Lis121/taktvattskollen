@@ -54,29 +54,30 @@ export default async function PseoPage(props: Props) {
         <>
             <Navbar />
             <main>
-                {/* 1. Header & Text Content from API */}
-                <section className="section py-12 md:py-20 bg-white">
-                    <div className="container mx-auto px-4 max-w-4xl">
-                        <h1 className="text-4xl md:text-5xl font-bold mb-8 text-center text-gray-900">{data.title}</h1>
+                {/* 1. Hero Section with Form */}
+                <section className={styles.hero} style={{ minHeight: '60vh' }}>
+                    <div className={styles.heroBackground}></div>
+                    <div className={`container ${styles.heroContent}`}>
+                        <div className={`${styles.heroText} animate-fade-in`}>
+                            <h1 style={{ color: 'var(--brand-primary)' }}>{data.title}</h1>
+                            <p style={{ color: 'var(--text-secondary)' }}>
+                                {data.excerpt || "Vi är dina lokala experter på takrengöring och algbehandling. Få en fri offert nedan."}
+                            </p>
+                        </div>
 
-                        <div
-                            className="prose prose-lg dark:prose-invert max-w-none text-gray-700"
-                            dangerouslySetInnerHTML={{ __html: data.contentHtml }}
-                        />
+                        <div className={`animate-fade-in delay-2`} style={{ width: '100%', maxWidth: '500px', justifySelf: 'center' }}>
+                            <PriceCalculator />
+                        </div>
                     </div>
                 </section>
 
-                {/* 2. Lead Form Component (Price Calculator) */}
-                <section id="kalkylator" className={styles.ctaSection}>
-                    <div className="container">
-                        <div className={styles.ctaContent}>
-                            <h2>Få en fri offert för {data.title}</h2>
-                            <p>Använd vår priskalkylator för att se vad det kostar att få taket rent just nu.</p>
-
-                            <div style={{ marginTop: '2rem' }}>
-                                <PriceCalculator />
-                            </div>
-                        </div>
+                {/* 2. Main Content from API */}
+                <section className="section bg-transparent pt-0">
+                    <div className="container mx-auto px-4 max-w-4xl">
+                        <div
+                            className="prose prose-lg dark:prose-invert max-w-none text-gray-100 mx-auto prose-h2:text-gray-100 prose-h3:text-gray-100 prose-h4:text-gray-100 prose-strong:text-white prose-a:text-brand-primary"
+                            dangerouslySetInnerHTML={{ __html: data.contentHtml }}
+                        />
                     </div>
                 </section>
 

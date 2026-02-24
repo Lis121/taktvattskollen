@@ -22,9 +22,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     try {
         while (true) {
-            const res = await fetch(`${SAAS_API_URL}/api/public/sitemap?projectId=${PROJECT_ID}&format=json&limit=5000&page=${page}`, {
-                cache: 'no-store' // Fix for Cloudflare Pages edge runtime
-            });
+            const res = await fetch(`${SAAS_API_URL}/api/public/sitemap?projectId=${PROJECT_ID}&format=json&limit=5000&page=${page}`);
 
             if (!res.ok) break;
 
