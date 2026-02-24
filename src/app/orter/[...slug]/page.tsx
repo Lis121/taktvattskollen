@@ -93,7 +93,7 @@ export default async function PseoPage(props: Props) {
                 </section>
 
                 {/* 2. Main Content from API */}
-                <section className="bg-transparent py-4 md:py-8">
+                <section className="bg-transparent py-4 md:pt-20 md:pb-12 lg:pt-24 lg:pb-16">
                     <div className="container mx-auto px-4 max-w-4xl">
                         <div
                             className="prose dark:prose-invert max-w-none text-white mx-auto prose-h2:text-white prose-h2:text-3xl prose-h3:text-white prose-h3:text-2xl prose-h4:text-white prose-strong:text-white prose-a:text-brand-primary"
