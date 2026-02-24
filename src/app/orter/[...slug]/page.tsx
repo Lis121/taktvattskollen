@@ -7,7 +7,7 @@ import CtaButton from "@/components/CtaButton";
 import Link from "next/link";
 import styles from "../../page.module.css";
 
-export const runtime = 'edge';
+export const dynamic = 'force-dynamic';
 
 // Config - This interacts with the SaaS Platform
 const SAAS_API_URL = "https://www.alstras.com";
