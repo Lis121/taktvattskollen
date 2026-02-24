@@ -37,7 +37,7 @@ export default function Footer() {
                 <div className={styles.column}>
                     <h4 className={styles.heading}>Utvalda Orter</h4>
                     <ul className={styles.links}>
-                        {cities.slice(0, 4).map(city => (
+                        {cities.slice(0, 5).map(city => (
                             <li key={city.slug}>
                                 <Link href={`/ort/${city.slug}`}>Takrengöring {city.name}</Link>
                             </li>
