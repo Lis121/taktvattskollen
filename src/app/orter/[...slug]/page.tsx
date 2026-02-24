@@ -55,17 +55,17 @@ export default async function PseoPage(props: Props) {
             <Navbar />
             <main>
                 {/* 1. Hero Section with Form */}
-                <section className={`${styles.hero} pt-24 pb-8 md:pt-32 md:pb-16`} style={{ minHeight: 'auto', display: 'block' }}>
+                <section className={styles.hero} style={{ minHeight: 'auto', paddingBottom: '6rem', paddingTop: '8rem' }}>
                     <div className={styles.heroBackground}></div>
-                    <div className="container mx-auto px-4 flex flex-col items-center text-center">
-                        <div className={`animate-fade-in w-full max-w-3xl mb-4 md:mb-6`}>
-                            <h1 style={{ color: 'var(--brand-primary)', marginBottom: '1rem' }}>{data.title}</h1>
-                            <p style={{ color: 'var(--text-secondary)', margin: 0 }}>
+                    <div className={`container ${styles.heroContent}`} style={{ rowGap: '1rem', columnGap: '2rem' }}>
+                        <div className={`${styles.heroText} animate-fade-in`}>
+                            <h1 style={{ color: 'var(--brand-primary)', marginBottom: '0.5rem' }}>{data.title}</h1>
+                            <p style={{ color: 'var(--text-secondary)' }}>
                                 {data.excerpt || "Vi är dina lokala experter på takrengöring och algbehandling. Få en fri offert nedan."}
                             </p>
                         </div>
 
-                        <div className={`animate-fade-in delay-2 w-full max-w-[500px]`}>
+                        <div className={`animate-fade-in delay-2`} style={{ width: '100%', maxWidth: '500px', justifySelf: 'center' }}>
                             <PriceCalculator />
                         </div>
                     </div>
