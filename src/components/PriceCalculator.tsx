@@ -45,25 +45,14 @@ export default function PriceCalculator() {
     const pricing = useMemo(() => {
         if (!area) return null;
 
-        const baseFeeExMoms = 2500;
-        const pricePerSqmExMoms = 30;
-
-        let roofMultiplier = 1.0;
-        switch (roofType) {
-            case 'betong': roofMultiplier = 1.0; break;
-            case 'tegel': roofMultiplier = 1.15; break;
-            case 'plat': roofMultiplier = 0.85; break;
-            case 'papp': roofMultiplier = 0.90; break;
-        }
-
-        let mossMultiplier = 1.0;
+        let pricePerSqm = 84; // default medel
         switch (mossLevel) {
-            case 'lite': mossMultiplier = 0.90; break;
-            case 'medel': mossMultiplier = 1.0; break;
-            case 'mycket': mossMultiplier = 1.25; break;
+            case 'lite': pricePerSqm = 71; break;
+            case 'medel': pricePerSqm = 84; break;
+            case 'mycket': pricePerSqm = 92; break;
         }
 
-        const totalExMoms = (baseFeeExMoms + (area * pricePerSqmExMoms)) * roofMultiplier * mossMultiplier;
+        const totalExMoms = area * pricePerSqm;
         const laborCostExMoms = totalExMoms * 0.8;
         const rotDeduction = laborCostExMoms * 0.3;
         const finalPrice = totalExMoms - rotDeduction;
@@ -72,10 +61,10 @@ export default function PriceCalculator() {
             originalPrice: Math.round(totalExMoms),
             finalPrice: Math.round(finalPrice),
             rotDiscount: Math.round(rotDeduction),
-            rangeMin: Math.round(totalExMoms * 0.85), // Rough estimate for the freemium view
+            rangeMin: Math.round(totalExMoms * 0.85),
             rangeMax: Math.round(totalExMoms * 1.15)
         };
-    }, [area, roofType, mossLevel]);
+    }, [area, mossLevel]);
 
     const handlePhase1Submit = (e: React.FormEvent) => {
         e.preventDefault();
