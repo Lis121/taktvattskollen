@@ -19,11 +19,8 @@ type Props = {
 
 async function fetchPseoPage(slug: string) {
     try {
-        // Fetch with no-store as revalidate is not properly supported in edge runtime
-        // or we can remove the global edge runtime config if not strictly needed
-        const res = await fetch(`${SAAS_API_URL}/api/public/content?projectId=${PROJECT_ID}&slug=${slug}&include=related`, {
-            cache: 'no-store', // Fix for Cloudflare Pages edge runtime without ISR support
-        });
+        // Fetch without 'cache: no-store' because Cloudflare Workers fetch API does not support the 'cache' field
+        const res = await fetch(`${SAAS_API_URL}/api/public/content?projectId=${PROJECT_ID}&slug=${slug}&include=related`);
 
         if (!res.ok) return null;
         return await res.json();
