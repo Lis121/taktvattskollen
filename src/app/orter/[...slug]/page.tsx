@@ -75,7 +75,7 @@ export default async function PseoPage(props: Props) {
                 <section className="section bg-transparent pt-0">
                     <div className="container mx-auto px-4 max-w-4xl">
                         <div
-                            className="prose prose-lg dark:prose-invert max-w-none text-gray-100 mx-auto prose-h2:text-gray-100 prose-h3:text-gray-100 prose-h4:text-gray-100 prose-strong:text-white prose-a:text-brand-primary"
+                            className="prose dark:prose-invert max-w-none text-white mx-auto prose-h2:text-white prose-h2:text-3xl prose-h3:text-white prose-h3:text-2xl prose-h4:text-white prose-strong:text-white prose-a:text-brand-primary"
                             dangerouslySetInnerHTML={{ __html: data.contentHtml }}
                         />
                     </div>
