@@ -5,12 +5,7 @@ import Footer from '@/components/Footer';
 import PriceCalculator from '@/components/PriceCalculator';
 import styles from '../../page.module.css';
 
-// This is required for static export to work with dynamic routes
-export async function generateStaticParams() {
-    return cities.map((c) => ({
-        city: c.slug,
-    }));
-}
+export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({ params }: { params: Promise<{ city: string }> }) {
     const resolvedParams = await params;
