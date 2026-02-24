@@ -86,7 +86,7 @@ export default async function PseoPage(props: Props) {
                             </p>
                         </div>
 
-                        <div className={`animate-fade-in delay-2`} style={{ width: '100%', maxWidth: '500px', justifySelf: 'center' }}>
+                        <div className={`animate-fade-in delay-2`} style={{ width: '100%', justifySelf: 'center' }}>
                             <PriceCalculator />
                         </div>
                     </div>
