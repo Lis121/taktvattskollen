@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ city: str
     }
 
     const title = `Takrengöring ${cityObj.name} | Bäst Pris & Nöjd-Kund-Garanti`;
-    const description = `Professionell takrengöring, fasadtvätt och algbehandling i ${cityObj.name}. Vi gör ditt tak som nytt igen. Snabbt, miljövänligt och med ROT-avdrag. Få en fri offert!`;
+    const description = cityObj.metaDescription || `Professionell takrengöring, fasadtvätt och algbehandling i ${cityObj.name}. Vi gör ditt tak som nytt igen. Snabbt, miljövänligt och med ROT-avdrag. Få en fri offert!`;
     const url = `https://taktvattskollen.se/ort/${cityObj.slug}`;
 
     return {
@@ -102,8 +102,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
                         <div className={`${styles.heroText} animate-fade-in`}>
                             <h1>Takrengöring i <span style={{ color: 'var(--brand-primary)' }}>{cityObj.name}</span></h1>
                             <p>
-                                Vi är dina lokala experter på takrengöring och algbehandling i {cityObj.name}.
-                                Spara upp till 80% jämfört med ett takbyte och få ett resultat som håller i flera år.
+                                {cityObj.heroText || `Vi är dina lokala experter på takrengöring och algbehandling i ${cityObj.name}. Spara upp till 80% jämfört med ett takbyte och få ett resultat som håller i flera år.`}
                             </p>
                             <div className={styles.heroButtonGroup}>
                                 <a href="#kalkylator" className="btn btn-primary">Få Prisförslag Direkt</a>
@@ -123,12 +122,9 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
                 {/* 2. Standardized Local Value Proposition with Semantic LSI Keywords */}
                 <section className={`${styles.servicesSection} section`}>
                     <div className={`container ${styles.sectionHeader}`}>
-                        <h2>Varför tvätta taket och fasaden i {cityObj.name}?</h2>
+                        <h2>{cityObj.whyTitle || `Varför tvätta taket och fasaden i ${cityObj.name}?`}</h2>
                         <p style={{ fontSize: '1.125rem', lineHeight: 1.6 }}>
-                            Klimatet i och omkring {cityObj.name} utsätter hustak och fasader för stora påfrestningar året runt.
-                            Mossa, alger och lav binder fukt mot takpannorna vilket i värsta fall kan leda till svåra frostsprängningar
-                            under vinterhalvåret. Genom en professionell taktvätt, skonsam fasadtvätt och långtidsverkande alg- och mossborttagning
-                            skyddar du din fastighets värde på sikt. Boka en lokal expert idag!
+                            {cityObj.whyText || `Klimatet i och omkring ${cityObj.name} utsätter hustak och fasader för stora påfrestningar året runt. Mossa, alger och lav binder fukt mot takpannorna vilket i värsta fall kan leda till svåra frostsprängningar under vinterhalvåret. Genom en professionell taktvätt, skonsam fasadtvätt och långtidsverkande alg- och mossborttagning skyddar du din fastighets värde på sikt. Boka en lokal expert idag!`}
                         </p>
                     </div>
                 </section>
@@ -139,7 +135,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
                 <section id="kalkylator" className={styles.ctaSection}>
                     <div className="container">
                         <div className={styles.ctaContent}>
-                            <h2>Räkna ut pris för {cityObj.name}</h2>
+                            <h2>{cityObj.ctaTitle || `Räkna ut pris för ${cityObj.name}`}</h2>
                             <p>Använd vår priskalkylator för att se vad det kostar att få taket rent just nu.</p>
 
                             <div style={{ marginTop: '2rem' }}>
