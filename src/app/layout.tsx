@@ -11,6 +11,8 @@ export const metadata: Metadata = {
   description: 'Vi erbjuder professionell takrengöring och algbehandling för hela Sverige. Få en fri offert idag!',
   icons: {
     icon: '/icon.png',
+    shortcut: '/icon.png',
+    apple: '/icon.png',
   },
 };
 
