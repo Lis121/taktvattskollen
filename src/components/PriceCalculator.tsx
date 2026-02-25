@@ -412,7 +412,27 @@ export default function PriceCalculator() {
                                     </div>
                                     <div className={styles.inputGroup}>
                                         <label htmlFor="zipCode">Postnummer</label>
-                                        <input type="text" id="zipCode" inputMode="numeric" pattern="[0-9]{3}\s?[0-9]{2}" required value={zipCode} onChange={e => setZipCode(e.target.value)} className={styles.input} placeholder="T.ex. 123 45" />
+                                        <input
+                                            type="text"
+                                            id="zipCode"
+                                            inputMode="numeric"
+                                            pattern="[0-9]{3} [0-9]{2}"
+                                            title="Postnumret måste bestå av 5 siffror"
+                                            maxLength={6}
+                                            required
+                                            value={zipCode}
+                                            onChange={e => {
+                                                let val = e.target.value.replace(/\D/g, '');
+                                                if (val.length > 5) val = val.substring(0, 5);
+                                                if (val.length > 3) {
+                                                    setZipCode(val.substring(0, 3) + ' ' + val.substring(3));
+                                                } else {
+                                                    setZipCode(val);
+                                                }
+                                            }}
+                                            className={styles.input}
+                                            placeholder="T.ex. 123 45"
+                                        />
                                     </div>
                                 </div>
                                 <div className={styles.formRow}>
