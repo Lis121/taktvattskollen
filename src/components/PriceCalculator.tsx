@@ -504,7 +504,6 @@ export default function PriceCalculator() {
                                     id="roofImages"
                                     className={styles.fileInput}
                                     accept="image/*"
-                                    capture="environment"
                                     multiple
                                     onChange={handleFileChange}
                                 />
