@@ -28,9 +28,8 @@ export default function Footer() {
                 <div className={styles.column}>
                     <h4 className={styles.heading}>Företaget</h4>
                     <ul className={styles.links}>
-                        <li><Link href="#om-oss">Om Oss</Link></li>
-                        <li><Link href="#garanti">Vår Garanti</Link></li>
-                        <li><Link href="#faq">Vanliga Frågor</Link></li>
+                        <li><Link href="/om-oss">Om Oss</Link></li>
+                        <li><Link href="/vanliga-fragor">Vanliga Frågor</Link></li>
                     </ul>
                 </div>
 

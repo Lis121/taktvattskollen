@@ -25,9 +25,9 @@ export default function Navbar() {
                 </Link>
                 <nav className={`${styles.nav} ${isMobileMenuOpen ? styles.mobileOpen : ''}`}>
                     <ul className={styles.navLinks}>
-                        <li><Link href="#tjanster" onClick={() => setIsMobileMenuOpen(false)}>Våra Tjänster</Link></li>
-                        <li><Link href="#om-oss" onClick={() => setIsMobileMenuOpen(false)}>Om Oss</Link></li>
-                        <li><Link href="#faq" onClick={() => setIsMobileMenuOpen(false)}>Vanliga Frågor</Link></li>
+                        <li><Link href="/#tjanster" onClick={() => setIsMobileMenuOpen(false)}>Våra Tjänster</Link></li>
+                        <li><Link href="/om-oss" onClick={() => setIsMobileMenuOpen(false)}>Om Oss</Link></li>
+                        <li><Link href="/vanliga-fragor" onClick={() => setIsMobileMenuOpen(false)}>Vanliga Frågor</Link></li>
                     </ul>
                     <Link href="#kontakt" className={`btn btn-primary ${styles.ctaBtn}`} onClick={() => setIsMobileMenuOpen(false)}>
                         Få Fri Offert
